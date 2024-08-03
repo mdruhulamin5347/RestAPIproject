@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+<div>
+
+    
+        <h2>User Registration</h2>
+    
+        <form id="registrationForm">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required><br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required><br>
+            <label for="password1">Password:</label>
+            <input type="password" name="password1" required><br>
+            <label for="password2">Confirm Password:</label>
+            <input type="password" name="password2" required><br>
+            <input type="submit" value="Register">
+        </form>
+    
+        <div id="resultMessage"></div>
+    
+        <script>
+            $(document).ready(function () {
+                $('#registrationForm').submit(function (event) {
+                    event.preventDefault();
+    
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://127.0.0.1:8000/api/rest/register/',  // Replace with your actual API endpoint
+                        data: $(this).serialize(),
+                        success: function (data) {
+                            if ('error' in data) {
+                                $('#resultMessage').text('Error: ' + data.error);
+                            } else {
+                                $('#resultMessage').text('Success: ' + data.success);
+                            }
+                        },
+                        error: function (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                });
+            });
+        </script>
+    
+
+
+</div>
+
+{% endblock %}

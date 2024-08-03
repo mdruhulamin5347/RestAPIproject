@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    contact page
+
+{% endblock %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+    <!-- Content -->
+    <div class="container mt-5" >
+        <h1>Data Collection Form</h1>
+
+        <!-- Data Collection Form -->
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+            
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div class="btn btn-primary mt-5">
+            <a  class="text-light" href="/details/">details</a>
+        </div>
+    </div>
+
+
+   
+
+
+{% endblock %}

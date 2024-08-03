@@ -1,0 +1,63 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+
+
+{% endblock %}
+
+
+
+
+{% block body %}
+<h1>Book Library</h1>
+
+<form id="bookForm">
+    <label for="title">Title:</label>
+    <input type="text" id="title" required>
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" required>
+
+    <label for="published_date">Published Date:</label>
+    <input type="date" id="published_date" required>
+
+    <button type="submit">Add Book</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#bookForm').submit(function (event) {
+            event.preventDefault();
+
+            // Gather form data
+            var formData = {
+                title: $('#title').val(),
+                author: $('#author').val(),
+                published_date: $('#published_date').val(),
+            };
+
+            // Send data to the backend
+            $.ajax({
+                type: 'POST',
+                url: '/api/books/',
+                data: formData,
+                success: function (data) {
+                    console.log('Book added successfully:', data);
+                    // You can update the UI here if needed
+                    // For example, clear the form fields or display a success message
+                    $('#title').val('');
+                    $('#author').val('');
+                    $('#published_date').val('');
+                },
+                error: function (error) {
+                    console.error('Error adding book:', error);
+                    // Handle errors and update the UI accordingly
+                    // For example, display an error message to the user
+                },
+            });
+        });
+    });
+</script>
+
+{% endblock  %}

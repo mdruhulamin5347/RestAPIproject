@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    contact page
+
+{% endblock %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+    <!-- Content -->
+    <div class="container mt-5" >
+        <h1>Data Collection Detail</h1>
+        
+        {% for i in resp %}
+            <div>
+                <ul>
+                    <li>{{i.id}}</li>
+                    <li>{{i.name}}</li>
+                    <li>{{i.phone}}</li>
+                    <li>{{i.email}}</li>
+                </ul>
+            </div>
+
+        {% endfor %}
+
+        <div class="btn btn-primary">
+            <a class="text-light" href="/contact/">contact</a>
+        </div> <br><br>
+
+        <div class="btn btn-primary">
+            <a class="text-light" href="/admin/">admin</a>
+        </div>
+
+       
+    </div>
+
+    
+
+{% endblock %}
